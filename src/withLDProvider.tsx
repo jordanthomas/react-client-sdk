@@ -73,6 +73,18 @@ export function withLDProvider(config: ProviderConfig) {
         this.subscribeToChanges(ldClient);
       }
 
+      static async getInitialProps(appContext) {
+        let appProps = {};
+
+        if (App.getInitialProps) {
+          appProps = await App.getInitialProps(appContext);
+        }
+
+        return {
+          ...appProps,
+        };
+      }
+
       render() {
         return (
           <Provider value={this.state}>
